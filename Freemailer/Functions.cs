@@ -35,8 +35,8 @@ namespace Freemailer
             request.AddParameter("from", emailMessage.From);
             request.AddParameter("to", emailMessage.To);
             request.AddParameter("subject", emailMessage.Subject);
-            request.AddParameter("text", emailMessage.Message);
-            request.Method = Method.POST;
+	        request.AddParameter(!emailMessage.IsHtml ? "text" : "html", emailMessage.Message);
+	        request.Method = Method.POST;
             return client.Execute(request);
         }
     }
